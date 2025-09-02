@@ -1,244 +1,290 @@
 /* ==========================================================================
-   ARCHIVE
+   ARCHIVE - 归档页面样式
    ========================================================================== */
 
+/* 归档容器 - 控制整个归档页面的布局和间距 */
 .archive {
-  margin-bottom: 2em;
+  margin-bottom: 2em; /* 底部边距：2em */
 
+  /* 中等屏幕尺寸 (768px+) */
   @include breakpoint($medium) {
-    @include span(12 of 12);
+    @include span(12 of 12); /* 占用全部12列宽度 */
   }
 
+  /* 大屏幕尺寸 (925px+) */
   @include breakpoint($large) {
-    @include span(11 of 12 last);
-    @include prefix(0.5 of 12);
+    @include span(11 of 12 last); /* 占用11列，last表示最后一列 */
+    @include prefix(1 of 12);   /* 左侧添加0.5列的空白间距 */
   }
 
+  /* 归档页面内的链接样式 */
   a {
-    text-decoration: underline;
+    text-decoration: underline; /* 下划线装饰 */
 
+    /* 鼠标悬停效果 */
     &:hover {
       text-decoration: underline;
 
+      /* 悬停时图片阴影效果 */
       img {
-        box-shadow: 0 0 10px rgba(#000, 0.25);
+        box-shadow: 0 0 10px rgba(#000, 0.25); /* 黑色半透明阴影 */
       }
     }
   }
 }
 
+/* 归档副标题 - 用于分类标题（如"Journal Articles"、"Conference Papers"） */
 .archive__subtitle {
-  margin: 1.414em 0 0;
-  padding-bottom: 0.5em;
-  font-size: $type-size-5;
-  color: mix(#fff, $gray, 25%);
-  border-bottom: 1px solid $border-color;
+  margin: 1.414em 0 0; /* 顶部边距：1.414em，左右下边距：0 */
+  padding-bottom: 0.5em; /* 底部内边距：0.5em */
+  font-size: $type-size-5; /* 字体大小：1em */
+  color: mix(#fff, $gray, 25%); /* 颜色：白色和灰色的混合 */
+  border-bottom: 1px solid $border-color; /* 底部边框：1px实线 */
 
+  /* 紧跟在副标题后的列表项标题样式 */
   + .list__item .archive__item-title {
-    margin-top: 0.5em;
+    margin-top: 0.5em; /* 顶部边距：0.5em */
   }
 }
 
+/* 归档项目标题 - 每个归档项目（如论文、作品）的标题样式 */
 .archive__item-title {
-  margin-bottom: 0.25em;
-  font-family: $sans-serif-narrow;
+  margin-bottom: 0.25em; /* 底部边距：0.25em */
+  font-family: $sans-serif-narrow; /* 字体：无衬线窄体 */
 
+  /* 标题中第二个链接的透明度（用于永久链接图标） */
   a + a {
-    opacity: 0.5;
+    opacity: 0.5; /* 透明度：50% */
   }
 }
 
-/* remove border*/
+/* 页面内容区域内的归档项目标题 - 移除边框样式 */
 .page__content {
 
   .archive__item-title {
-    margin-top: 1em;
-    border-bottom: none;
+    margin-top: 1em; /* 顶部边距：1em */
+    border-bottom: none; /* 移除底部边框 */
   }
 }
 
+/* 归档项目摘要 - 每个归档项目的简短描述文本 */
 .archive__item-excerpt {
-  margin-top: 0;
-  font-size: $type-size-6;
+  margin-top: 0; /* 顶部边距：0 */
+  font-size: $type-size-6; /* 字体大小：0.75em（较小字体） */
 
+  /* 摘要后的段落样式 */
   & + p {
-    text-indent: 0;
+    text-indent: 0; /* 文本缩进：0 */
   }
 }
 
+/* 归档项目预览图 - 每个归档项目的缩略图或预览图片 */
 .archive__item-teaser {
-  border-radius: $border-radius;
-  overflow: hidden;
+  border-radius: $border-radius; /* 边框圆角：4px */
+  overflow: hidden; /* 隐藏溢出内容 */
+  
+  /* 预览图中的图片样式 */
   img {
-    width: 100%;
+    width: 100%; /* 图片宽度：100%（填满容器） */
   }
 }
 
+/* 归档项目悬停效果 - 鼠标悬停在归档项目上时的样式 */
 .archive__item:hover {
+  /* 悬停时预览图阴影效果 */
   .archive__item-teaser {
-    box-shadow: 0 0 10px rgba(#000, 0.25);
+    box-shadow: 0 0 10px rgba(#000, 0.25); /* 黑色半透明阴影 */
   }
 
+  /* 悬停时标题下划线效果 */
   .archive__item-title {
-    text-decoration: underline;
+    text-decoration: underline; /* 下划线装饰 */
   }
 }
 
 
 /*
-   List view
+   List view - 列表视图样式
    ========================================================================== */
 
+/* 列表项 - 归档页面中的每个列表项目 */
 .list__item {
+  /* 中等屏幕尺寸 (768px+) */
   @include breakpoint($medium) {
-    padding-right: $right-sidebar-width-narrow;
+    padding-right: $right-sidebar-width-narrow; /* 右侧内边距：200px */
   }
 
+  /* 大屏幕尺寸 (925px+) */
   @include breakpoint($large) {
-    padding-right: $right-sidebar-width;
+    padding-right: $right-sidebar-width; /* 右侧内边距：300px */
   }
 
+  /* 超大屏幕尺寸 (1280px+) */
   @include breakpoint($x-large) {
-    padding-right: $right-sidebar-width-wide;
+    padding-right: $right-sidebar-width-wide; /* 右侧内边距：400px */
   }
 
+  /* 页面元数据样式 */
   .page__meta {
-    margin: 0 0 4px;
+    margin: 0 0 4px; /* 上下边距：0，底部边距：4px */
   }
 }
 
 
 /*
-   Grid view
+   Grid view - 网格视图样式
    ========================================================================== */
 
+/* 网格项 - 归档页面中的网格布局项目 */
 .grid__item {
-  margin-bottom: 2em;
+  margin-bottom: 2em; /* 底部边距：2em */
 
+  /* 页面元数据样式 */
   .page__meta {
-    margin: 0 0 4px;
+    margin: 0 0 4px; /* 上下边距：0，底部边距：4px */
   }
 
+  /* 网格项中的标题样式 */
   .archive__item-title {
-    margin-top: 0.5em;
-    font-size: $type-size-5;
+    margin-top: 0.5em; /* 顶部边距：0.5em */
+    font-size: $type-size-5; /* 字体大小：1em */
   }
 
+  /* 网格项中的摘要默认隐藏 */
   .archive__item-excerpt {
-    display: none;
+    display: none; /* 隐藏摘要 */
   }
 
+  /* 小屏幕尺寸 (600px+) */
   @include breakpoint($small) {
-    @include gallery(5 of 10);
+    @include gallery(5 of 10); /* 网格布局：10列中占5列 */
+    
+    /* 预览图最大高度 */
     .archive__item-teaser {
-      max-height: 200px;
+      max-height: 200px; /* 最大高度：200px */
     }
   }
 
+  /* 中等屏幕尺寸 (768px+) */
   @include breakpoint($medium) {
-    margin-left: 0; /* reset before mixin does its thing*/
-    margin-right: 0; /* reset before mixin does its thing*/
-    @include gallery(2.5 of 10);
+    margin-left: 0; /* 重置左边距 */
+    margin-right: 0; /* 重置右边距 */
+    @include gallery(2.5 of 10); /* 网格布局：10列中占2.5列 */
 
+    /* 预览图最大高度 */
     .archive__item-teaser {
-      max-height: 120px;
+      max-height: 120px; /* 最大高度：120px */
     }
 
+    /* 显示摘要 */
     .archive__item-excerpt {
-      display: block;
-      font-size: $type-size-6;
+      display: block; /* 显示摘要 */
+      font-size: $type-size-6; /* 字体大小：0.75em */
     }
   }
 }
 
 
 /*
-   Features
+   Features - 特色项目样式
    ========================================================================== */
 
+/* 特色项目包装器 - 包含多个特色项目的容器 */
 .feature__wrapper {
-  @include clearfix();
-  margin-bottom: 2em;
-  border-bottom: 1px solid $border-color;
+  @include clearfix(); /* 清除浮动 */
+  margin-bottom: 2em; /* 底部边距：2em */
+  border-bottom: 1px solid $border-color; /* 底部边框：1px实线 */
 }
 
+/* 特色项目 - 单个特色项目的样式 */
 .feature__item {
-  margin-bottom: 2em;
-  font-size: 1.25rem;
+  margin-bottom: 2em; /* 底部边距：2em */
+  font-size: 1.25rem; /* 字体大小：1.25rem */
 
+  /* 小屏幕尺寸 (600px+) */
   @include breakpoint($small) {
-    margin-bottom: 0;
-    @include gallery(4 of 12);
+    margin-bottom: 0; /* 重置底部边距 */
+    @include gallery(4 of 12); /* 网格布局：12列中占4列 */
 
+    /* 特色项目预览图 */
     .feature__item-teaser {
-      max-height: 200px;
-      overflow: hidden;
+      max-height: 200px; /* 最大高度：200px */
+      overflow: hidden; /* 隐藏溢出内容 */
     }
   }
 
+  /* 左对齐特色项目 */
   &--left {
-    @include full();
-    font-size: 1.25rem;
+    @include full(); /* 占满宽度 */
+    font-size: 1.25rem; /* 字体大小：1.25rem */
 
     .archive__item-teaser {
-      margin-bottom: 2em;
+      margin-bottom: 2em; /* 底部边距：2em */
     }
 
     @include breakpoint($small) {
+      /* 预览图占5列 */
       .archive__item-teaser {
         @include span(5 of 12);
       }
 
+      /* 内容区域占7列 */
       .archive__item-body {
         @include span(7 of 12 last);
-        @include prefix(0.5 of 12);
-        @include suffix(1 of 12);
+        @include prefix(0.5 of 12); /* 左侧间距：0.5列 */
+        @include suffix(1 of 12); /* 右侧间距：1列 */
       }
     }
   }
 
+  /* 右对齐特色项目 */
   &--right {
-    @include full();
-    font-size: 1.25rem;
+    @include full(); /* 占满宽度 */
+    font-size: 1.25rem; /* 字体大小：1.25rem */
 
     .archive__item-teaser {
-      margin-bottom: 2em;
+      margin-bottom: 2em; /* 底部边距：2em */
     }
 
     @include breakpoint($small) {
-      text-align: right;
+      text-align: right; /* 文本右对齐 */
 
+      /* 预览图占5列（从右开始） */
       .archive__item-teaser {
         @include span(5 of 12 rtl);
       }
 
+      /* 内容区域占7列（从右开始） */
       .archive__item-body {
         @include span(7 of 12 last rtl);
-        @include prefix(0.5 of 12);
-        @include suffix(1 of 12);
+        @include prefix(0.5 of 12); /* 左侧间距：0.5列 */
+        @include suffix(1 of 12); /* 右侧间距：1列 */
       }
     }
   }
 
+  /* 居中对齐特色项目 */
   &--center {
-    @include full();
-    font-size: 1.25rem;
+    @include full(); /* 占满宽度 */
+    font-size: 1.25rem; /* 字体大小：1.25rem */
 
     .archive__item-teaser {
-      margin-bottom: 2em;
+      margin-bottom: 2em; /* 底部边距：2em */
     }
 
     @include breakpoint($small) {
-      text-align: center;
+      text-align: center; /* 文本居中对齐 */
 
+      /* 预览图居中，占5列 */
       .archive__item-teaser {
-        margin: 0 auto;
-        width: span(5 of 12);
+        margin: 0 auto; /* 水平居中 */
+        width: span(5 of 12); /* 宽度：5列 */
       }
 
+      /* 内容区域居中，占7列 */
       .archive__item-body {
-        margin: 0 auto;
-        width: span(7 of 12);
+        margin: 0 auto; /* 水平居中 */
+        width: span(7 of 12); /* 宽度：7列 */
       }
     }
   }
