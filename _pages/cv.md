@@ -50,7 +50,7 @@ Teaching
 
 ## Work Experience
 
-### Product Developer | Spring 2024
+<!-- ### Product Developer | Spring 2024
 **Southeast University**
 * Developed Sound Guardian system for hearing-impaired users
 * Supervisor: Professor Li
@@ -58,14 +58,10 @@ Teaching
 ### Workshop Participant | Fall 2023
 **Southeast University + ETH Zurich**
 * Morphological Fusion project, 3D curved surface modeling
-* Supervisor: Professor Li
+* Supervisor: Professor Li -->
 
 ### Architectural Design Assistant | Summer 2022
-**MLA+, Shenzhen, China**
-* Nanjiao School Design project
-* Supervisor: Cao Ruizhi
+**MLA+, Shenzhen, China**   Supervisor: Cao Ruizhi
 
 ### Translation Intern | Spring 2023
-**ArchDaily, Shanghai, China**
-* Translated 27,000+ words of architectural content
-* Supervisor: Han Shuang
+**ArchDaily, Shanghai, China**   Supervisor: Han Shuang
