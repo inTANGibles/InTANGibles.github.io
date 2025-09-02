@@ -16,4 +16,3 @@ The datasets generated and analyzed during the current study are publicly availa
 
 <a href='https://doi.org/10.1007/s44223-025-00084-5'>Download paper here</a>
 
-Recommended citation: Tang, Y., Sun, J., Wang, G. et al. Analysis of campus crowd behaviour based on location data and physical environment data: a case study of Southeast University Wuxi Campus. ARIN 4, 5 (2025).

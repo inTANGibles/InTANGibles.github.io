@@ -13,5 +13,3 @@ This panel presentation explores the application of reinforcement learning in ar
 
 
 <a href='https://ai-venice2025.com/EA-AI%202025%20programme.pdf'>Download paper here</a>
-
-Recommended citation: Tang, Y., Feng, Y., Huang, R., & Li, L. (2025, March). From Behavior to Form: Exploring Reinforcement Learning in Architecture and Urban Design. Presented at the panel, Ethics and Aesthetics of Artificial Images, Venice, Italy.
