@@ -1,0 +1,61 @@
+---
+---
+
+/*
+ *    Minimal Mistakes Jekyll Theme
+ *
+ *  - Michael Rose
+ *  - mademistakes.com
+ *  - https://twitter.com/mmistakes
+ *
+*/
+
+@import "vendor/breakpoint/breakpoint"; // media query mixins
+@import "variables";
+@import "mixins";
+@import "vendor/susy/susy";
+
+@import "reset";
+@import "base";
+
+@import "utilities";
+@import "animations";
+@import "tables";
+@import "buttons";
+@import "notices";
+@import "masthead";
+@import "navigation";
+@import "footer";
+@import "syntax";
+
+@import "forms";
+
+@import "page";
+@import "archive";
+@import "sidebar";
+
+@import "vendor/font-awesome/fontawesome";
+@import "vendor/font-awesome/solid";
+@import "vendor/font-awesome/brands";
+@import "vendor/magnific-popup/magnific-popup";
+@import "print";
+
+/* 自定义样式 - 扩展内容区域 */
+.page {
+    @include breakpoint($large) {
+      @include span(11 of 12 last);  // 增加内容宽度
+      @include prefix(0.5 of 12);
+      @include suffix(1 of 12);      // 减少右侧边距
+    }
+  }
+  
+  /* 针对publications页面的特殊处理 */
+  body.publications-page {
+    .page {
+      @include breakpoint($large) {
+        @include span(11.5 of 12 last);
+        @include prefix(0.5 of 12);
+        @include suffix(0 of 12);
+      }
+    }
+  }

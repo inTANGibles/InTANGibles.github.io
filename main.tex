@@ -1,0 +1,515 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=2 cm, % seperation between body and page edge from the top
+    bottom=2 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 0, 0} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={YE TANG},
+    pdfauthor={YE TANG},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage{charter}
+
+% Some settings:
+\raggedright
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0.15cm} % set column seperation
+\pagenumbering{gobble} % no page numbering
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0 cm + 0.00001 cm
+    }{
+        0 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{threecolentry}[3][]{
+    \onecolentry
+    \def\thirdColumn{#3}
+    \setcolumnwidth{, \fill, 4.5 cm}
+    \begin{paracol}{3}
+    {\raggedright #2} \switchcolumn
+}{
+    \switchcolumn \raggedleft \thirdColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for three column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Last updated in September 2024}\hspace{\widthof{Last updated in September 2024}}
+    }}}%
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{$|$}
+
+    \begin{header}
+        \fontsize{20 pt}{20 pt}\selectfont YE TANG
+
+        \vspace{5 pt}
+
+        \normalsize
+        \mbox{Southeast University, Nanjing, China}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{mailto:tangye@seu.edu.cn}{tangye@seu.edu.cn}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{https://github.com/inTANGibles}{https://github.com/inTANGibles}}%
+        \kern 5.0 pt%
+
+    \end{header}
+
+    \vspace{10 pt}
+
+
+
+
+    \section{EDUCATION}
+
+
+
+        
+        \begin{twocolentry}{
+            Sept 2017 – Jan 2019
+        }
+            \textbf{Huazhong University of Science and Technology}, Artificial Intelligence \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item\textcolor{gray}{ Rank:13/158  (Linear Algebra, Calculus, Data Structures, C++)}
+            \end{highlights}
+        \end{onecolentry}
+
+        \begin{twocolentry}{
+            Jan 2019 – Jun 2023
+        }
+            \textbf{Huazhong University of Science and Technology}, Bachelor of Architecture  \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item\textcolor{gray} {GPA: 3.9/4   (Architectural Thematic Design, Building Structures, Building Mechanics, Architectural History)}
+            \end{highlights}
+        \end{onecolentry}
+        
+        \begin{twocolentry}{
+            Sep 2023 – Jun 2026
+        }
+            \textbf{Southeast University}, Master of Architecture \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item\textcolor{gray} {GPA: 3.7/4   (Digital Technology and Architecture, AI for Architects, Programming Fundamentals)}
+            \end{highlights}
+        \end{onecolentry}
+            
+        \begin{twocolentry}{
+            Feb 2025 – Jul 2025
+        }
+            \textbf{IUAV University of Venice}, Exchange Program in Urban Planning \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item\textcolor{gray} {19 ECTS Credits  (Urban History and Architecture, Circular City Studio)}
+            \end{highlights}
+        \end{onecolentry}
+
+
+
+
+    
+    \section{PUBLICATIONS}
+    
+    
+    
+            
+    \begin{samepage}
+          [1] \textbf{Tang, Y.}, Sun, J., Wang, G. \textit{et al.} Analysis of campus crowd behaviour based on location data and physical environment data: a case study of Southeast University Wuxi Campus. \textit{ARIN} 4, 5 (2025). https://doi.org/10.1007/s44223-025-00084-5 
+        \vspace{0.5em}
+        
+    
+          [2] \textbf{Tang, Y.}, Sun, J., Wang, G., Hong, W., Li, L. (2025). Analysis of Campus Crowd Behavior Based on Location Data and Physical Environment Data: A Case Study of Southeast University Wuxi Campus. In: Chai, H., Bao, D.W.N., Guo, Z., Yuan, P.F. (eds) Symbiotic Intelligence. CDRF 2024. Computational Design and Robotic Fabrication. Springer, Singapore. https://doi.org/10.1007/978-981-96-3433-0\_36 
+        \vspace{0.5em}
+        
+    
+        [3]\textbf{ Tang, Y.}, Jing, Z., Feng, Y., Qiu, S., \& Li, L. (2025). RoadNetOpt – A street network optimization tool for urban sustainability. Full paper accepted to the \textit{Proceedings of the 43rd International Conference on Education and Research in Computer Aided Architectural Design in Europe (eCAADe 2025)}.
+        \vspace{0.5em}
+        
+    
+        [4] Yi, Q., Zhou, X., \textbf{Tang, Y.}, \& Xu, S. (2020). The standardized design elements of affordable housing in Wuhan. \textit{Huazhong Architecture}, 2020(3), 84–89. \href{https://doi.org/10.13942/j.cnki.hzjz.2021.03.016}{https://doi.org/10.13942/j.cnki.hzjz.2021.03.016}
+        \vspace{0.5em}
+        
+    
+        \textcolor{gray} {[5]\textbf{Tang, Y.}, Feng, Y., Huang, R., \& Li, L. (2025, March). \textit{From Behavior to Form: Exploring Reinforcement Learning in Architecture and Urban Design}. Presented at the panel, Ethics and Aesthetics of Artificial Images, Venice,Italy.}
+        \vspace{0.5em}
+        
+    
+        \textcolor{gray} {[6] Jing, Z., \textbf{Tang, Y.}, Feng, Y., \& Li, L. (2025). \textit{Urban road network skeleton extraction method: Improvements based on Delaunay triangulation and axis generation algorithm}. Accepted at the 2025 Annual Conference on Computational Design (CDAC2025), China.}
+        \vspace{0.5em}
+        
+    
+        \textcolor{gray} {[7] Huang, R., \textbf{Tang, Y.}, et al. (2025). Human behavior trajectory prediction simulation tool in village transformation. \textit{Manuscript submitted for publication}.}
+        \vspace{0.5em}
+        
+    
+        
+    
+        
+    
+        \end{samepage}
+    
+        \section{TECHNOLOGIES}
+        
+        \begin{onecolentry}
+            \textbf{Programming Languages:} Python, C\#
+        \end{onecolentry}
+        
+        \vspace{0.2 cm}
+        
+        \begin{onecolentry}
+            \textbf{AI \& Data Science:} PyTorch, scikit-learn, pandas, NumPy, OpenCV, Stable-Baselines3
+        \end{onecolentry}
+        
+        \vspace{0.2 cm}
+        
+        \begin{onecolentry}
+            \textbf{3D Modeling \& Simulation:} Rhino + Grasshopper, Unity
+        \end{onecolentry}
+        
+        \vspace{0.2 cm}
+        
+        \begin{onecolentry}
+            \textbf{Digital Fabrication:} 3D Printing, Arduino, ESP32, PLC programming
+        \end{onecolentry}
+        
+        \vspace{0.2 cm}
+        
+        \begin{onecolentry}
+            \textbf{GIS \& Spatial Analysis:} QGIS, OSMnx, NetworkX, GeoPandas
+        \end{onecolentry}
+        
+        \vspace{0.2 cm}
+        
+        
+        \begin{onecolentry}
+            \textbf{Collaboration:} Git, LaTeX, Overleaf, Zotero
+        \end{onecolentry}
+
+    
+    \section{EXPEIENCE}
+    \textbf{Quantifying Street Value in Urban Contexts -- Integrating Graph Neural Networks} \\
+    \begin{twocolentry}{
+    Jul 2025
+    }
+    \textit{Participant}, Tongji University digitalFUTURES 2025 -- Shanghai, China
+    \end{twocolentry}
+    
+    
+    \vspace{0.2 cm}
+
+    \textbf{Morphological Fusion -- Compound Twin Project} \\
+    \begin{twocolentry}{
+    Sep 2024 – Nov 2024
+    }
+    \textit{Participant}, Southeast University + ETH Zurich Workshop -- Nanjing, China
+    \end{twocolentry}
+    
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+    \begin{highlights}
+        \item \textcolor{gray}{Optimized 3D curved surface modeling algorithms for complex form generation}
+        \item \textcolor{gray}{Presented at the 40th Anniversary Academic Symposium of SEU + ETH Zurich Institute of Technology}
+    \end{highlights}
+    \end{onecolentry}
+
+
+    \vspace{0.2 cm}
+
+    
+    \textbf{Population Trends and Urban Space: Spatial and Behavioral Reconstruction under Multiple Social Factors} \\
+    \begin{twocolentry}{
+    Jul 2024
+    }
+    \textit{Participant}, Tongji University digitalFUTURES 2024 -- Shanghai, China
+    \end{twocolentry}
+    
+    \vspace{0.2 cm}
+
+    \textbf{Sound Guardian: Intelligent Sound Event Recognition System for the Hearing Impaired} \\
+    \begin{twocolentry}{
+    Mar 2024 – Jun 2024
+    }
+    \textit{Product Developer}, Southeast University -- Wuxi, China
+    \end{twocolentry}
+    
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+    \begin{highlights}
+        \item \textcolor{gray}{Developed embedded sensing hardware for sound event recognition based on ESP32 and INMP441}
+        \item \textcolor{gray}{Designed Python and PyTorch pipeline for classification and visualization of urban sound events}
+        \item \textcolor{gray}{Built mobile UI and usage logic tailored for hearing-impaired users in everyday scenarios}
+    \end{highlights}
+    \end{onecolentry}
+    
+    \vspace{0.20 cm}
+
+    \textbf{Fusion of Digital Fabrication and Interactive Expression: Exploration of Oriental Sage Interactive Device} \\
+    \begin{twocolentry}{
+    Sep 2023 – Jan 2024
+    }
+    \textit{Participant}, Southeast University -- Nanjing, China
+    \end{twocolentry}
+    
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+    \begin{highlights}
+        \item \textcolor{gray}{Co-designed an interactive installation combining YOLOv5, PLC, and motion response systems}
+        \item \textcolor{gray}{Explored digital construction and audience interaction under the theme “Oriental Wisdom”}
+        \item \textcolor{gray}{Co-developed prototype and contributed to a published paper on interactive fabrication}
+    \end{highlights}
+    \end{onecolentry}
+
+    \vspace{0.2 cm}
+    
+
+    \textbf{Space and Media Group Workshop, Future Lab} \\
+    \begin{twocolentry}{
+    Dec 2022 – Feb 2023
+    }
+    \textit{Workshop Contributor}, Tsinghua University -- Beijing, China
+    \end{twocolentry}
+    
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+    \begin{highlights}
+        \item \textcolor{gray}{Designed spatial layouts and visual materials for Future Lab exhibition}
+        \item \textcolor{gray}{Developed interactive sensing systems and implemented real-time programming workflows}
+    \end{highlights}
+    \end{onecolentry}
+    
+    \vspace{0.2 cm}
+
+    \textbf{Architectural Design of the Cliff Post Station in Xuan'en County, Enshi Prefecture} \\
+    \begin{twocolentry}{
+    Dec 2021 – Jan 2023
+    }
+    \textit{Architectural Designer}, Future Rural Construction Studio -- Wuhan, China
+    \end{twocolentry}
+    
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+    \begin{highlights}
+        \item \textcolor{gray}{Participated in full-cycle design of a rural public project, completed and built on site}
+        \item \textcolor{gray}{Led conceptual and spatial scheme design; responsible for digital modeling and architectural form development}
+        \item \textcolor{gray}{Collaborated on structural design adapted to cliff terrain and construction feasibility}
+    \end{highlights}
+    \end{onecolentry}
+
+    \vspace{0.2 cm}
+
+    
+    \textbf{Heritage Survey of the Original 2348 Factory, Hubei} \\
+    \begin{twocolentry}{
+    Jul 2021 – Nov 2021
+    }
+    \textit{Project Lead}, Huazhong University of Science and Technology -- Wuhan, China
+    \end{twocolentry}
+    
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+    \begin{highlights}
+        \item \textcolor{gray}{Directed a heritage documentation team for the Original 2348 Factory}
+        \item \textcolor{gray}{Managed collaboration with local organizations for site access and results reporting}
+        \item \textcolor{gray}{Utilized 3D laser scanning to generate point cloud models and architectural drawings}
+    \end{highlights}
+    \end{onecolentry}
+    
+    \vspace{0.2 cm}
+    
+    \textbf{Design of Adaptability of Household Parts in Apartments under the Intensive Concept} \\
+    \begin{twocolentry}{
+    May 2020 – Jun 2021
+    }
+    \textit{Research Assistant}, Huazhong University of Science and Technology -- Wuhan, China
+    \end{twocolentry}
+    
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+    \begin{highlights}
+        \item \textcolor{gray}{Led a university innovation and entrepreneurship research project}
+        \item \textcolor{gray}{Conducted on-site housing surveys and apartment adaptability analysis}
+        \item \textcolor{gray}{Participated in writing and submitting academic publications}
+    \end{highlights}
+    \end{onecolentry}
+
+
+    \section{SCHOLARSHIP}
+    
+    % === Academic Scholarships ===
+    \vspace{0.2em}
+    \begin{tabularx}{\linewidth}{@{}Xr@{}}
+    First Class Scholarship & 2023 \\
+    Outstanding Graduate of HUST &  \\
+    LongHu Scholarship & 2021 \\
+    Merit Student Scholarship &  \\
+    Merit Student Scholarship & 2020 \\
+    Merit Student Scholarship & 2019 \\
+    Scholarship for National Encouragement &  \\
+    Scholarship for Academic Excellence & 2018 \\
+    Merit Student Scholarship &  \\
+    \end{tabularx}
+    
+
+    \section*{COMPETITION AWARDS}
+    \vspace{0.2em}
+    \begin{tabularx}{\textwidth}{@{}Xr@{}}
+    {The 7th National Architectural Colleges Outstanding Graduation Design Works} & {June 2023} \\
+    {Tactical Urbanism Now\#2021 Finalists} & {May 2022} \\
+    {Exhibition of Architectural Design in Developing Countries 2021} & {March 2022} \\
+    {Tsinghua Global Summer School in Architecture} & {July 2022} \\
+    {Penn Social Justice Research Academy (Weitzman School of Design)} & {July 2024} \\
+    \end{tabularx}
+
+    \section*{INTERNSHIP}
+    
+    \textbf{MLA+}, \textbf{Shenzhen, China} \\
+    \textit{Architectural Design Assistant} \hfill {Aug 2022 – Nov 2022} \\
+    Mentor: Cao Ruizhi. Project: Nanjiao School Design, Shenzhen Architecture Industry Ecological Intelligent Valley.
+    
+    \vspace{0.2cm}
+    
+    \textbf{ArchDaily}, \textbf{Shanghai, China} \\
+    \textit{Translation Intern} \hfill {Jan 2023 – Jul 2023} \\
+    Mentor: Han Shuang. Translated 27,000+ words of daily news, reports, and articles from Chinese to English.
+    
+    \vspace{0.2cm}
+
+
+    
+
+
+    
+
+\end{document}
